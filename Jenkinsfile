@@ -3,6 +3,9 @@ pipeline {
     stages {
         stage("Code Build"){
             steps{
+                sh "sudo apt-get update"
+                sh "sudo apt install docker.io"
+                sh "sudo usermod -aG docker $USER"
                 sh "docker build . -t mynotesapp:1.0"
             }
         }
