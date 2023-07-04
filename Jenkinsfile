@@ -15,5 +15,10 @@ pipeline {
             }   
             }         
         }
+        stage("Deploy to dev server"){
+            steps{
+                sh "docker-compose down && docker-compose up -d"
+            }
+        }
     }
 }
