@@ -17,7 +17,10 @@ pipeline {
         }
         stage("Deploy to dev server"){
             steps{
+                withCredentials([usernamePassword(credentialsId:"DockerHub",passwordVariable:"DockerHubPass",usernameVariable:"DockerHubUser")]){
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                 sh "docker run -d -p 8000:8000 ${env.dockerHubUser}/mynotesapp:1.0"
+            }   
             }
         }
     }
