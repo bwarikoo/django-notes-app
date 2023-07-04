@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    stages{
+    stages {
         stage("Code Build"){
             steps{
                 sh "docker build . -t mynotesapp:1.0"
@@ -12,7 +12,8 @@ pipeline {
                 sh "docker tag mynotesapp ${env.dockerHubUser}/mynotesapp:latest"
                 sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                 sh "docker push ${env.dockerHubUser}/mynotesapp:latest"
-            }            
+            }   
+            }         
         }
     }
 }
